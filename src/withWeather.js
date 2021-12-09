@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-const Weather = (WrappedComponent) => {
-  return class extends Component {
+const withWeather = WrappedComponent => {
+  class Weather extends Component {
     constructor(props) {
       super(props)
 
@@ -18,11 +18,11 @@ const Weather = (WrappedComponent) => {
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&units=metric&appid=${apikey}`)
         .then(response => response.json())
         .then(data => {
-          this.setState({ 
+          this.setState({
             info: data,
             isFetched: true
-           })
-           console.log(data);
+          })
+          console.log(data);
         })
         .catch(error => console.warn(error))
     }
@@ -30,11 +30,12 @@ const Weather = (WrappedComponent) => {
     render() {
       let just = this.state.info;
       return (
-        (this.state.isFetched === true)? <WrappedComponent name={just.name} temp={just.main.temp} feels_like={just.main.feels_like} humidity={just.main.humidity} wind={just.wind.speed} /> : null
+        (this.state.isFetched === true) ? <WrappedComponent name={just.name} temp={just.main.temp} feels_like={just.main.feels_like} humidity={just.main.humidity} wind={just.wind.speed} /> : null
       )
     }
   }
+  return Weather
 }
 
-export default Weather
+export default withWeather
 

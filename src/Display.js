@@ -1,5 +1,5 @@
 import React from 'react'
-import Weather from "./withWeather";
+import withWeather from "./withWeather";
 import './Display.css';
 
 function Display(props) {
@@ -14,4 +14,4 @@ function Display(props) {
   )
 }
 
-export default Weather(Display)
+export default withWeather(Display)
