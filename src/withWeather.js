@@ -12,7 +12,7 @@ const Weather = (WrappedComponent) => {
     }
 
     componentDidMount() {
-      let apikey = '38ab4d97236cf865951786cd6f0c989d';
+      let apikey = '476d53f468aad0510ba49193822cb137';
       let cityname = this.props.name;
 
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&units=metric&appid=${apikey}`)
@@ -30,7 +30,7 @@ const Weather = (WrappedComponent) => {
     render() {
       let just = this.state.info;
       return (
-        (this.state.isFetched === true)? <WrappedComponent name={just.name} temp={just.main.temp} feels_like={just.main.feels_like} humidity={just.main.humidity} wind={just.wind.speed}/> : null
+        (this.state.isFetched === true)? <WrappedComponent name={just.name} temp={just.main.temp} feels_like={just.main.feels_like} humidity={just.main.humidity} wind={just.wind.speed} /> : null
       )
     }
   }
